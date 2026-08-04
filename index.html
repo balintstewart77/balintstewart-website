@@ -29,7 +29,8 @@
     --bg:#fbfaf8;
     --accent:#c05a3e;      /* taken from the dashboard charts */
     --accent-deep:#8f3f2a;
-    --measure:36rem;
+    --measure:44rem;
+    --wide:60rem;
   }
 
   *,*::before,*::after{box-sizing:border-box}
@@ -47,9 +48,18 @@
   }
 
   .wrap{
-    max-width:var(--measure);
-    margin:0 auto;
+    width:100%;
+    max-width:var(--wide);
+    margin-left:auto;
+    margin-right:auto;
     padding:3.5rem 1.5rem 4rem;
+  }
+
+  /* prose sits at a readable measure, centred inside the wider track */
+  header, main > section, footer{
+    max-width:var(--measure);
+    margin-left:auto;
+    margin-right:auto;
   }
 
   /* ---- header ---- */
@@ -76,16 +86,25 @@
   }
 
   /* ---- body ---- */
-  section{margin:0 0 2.25rem}
+  main > section{margin-bottom:2.25rem}
   p{margin:0 0 1rem}
   p:last-child{margin-bottom:0}
 
   a{color:var(--accent-deep);text-decoration:underline;text-underline-offset:2px;text-decoration-thickness:1px}
   a:hover{color:var(--accent)}
 
+  /* dashboard section spans the wide track so the figure can break out */
+  main > section.has-figure{max-width:var(--wide)}
+  main > section.has-figure > p{
+    max-width:var(--measure);
+    margin-left:auto;
+    margin-right:auto;
+  }
+
   /* ---- figure ---- */
   figure{
-    margin:1.75rem 0 0;
+    max-width:var(--wide);
+    margin:1.75rem auto 0;
   }
   figure img{
     display:block;
@@ -96,6 +115,7 @@
   }
   figcaption{
     margin-top:.6rem;
+    text-align:left;
     font-size:.875rem;
     line-height:1.5;
     color:var(--muted);
@@ -108,7 +128,8 @@
     border-left:3px solid var(--accent);
     border-radius:3px;
     padding:1.5rem 1.5rem 1.5rem;
-    margin:0 0 2.25rem;
+    max-width:var(--measure);
+    margin:0 auto 2.25rem;
   }
   .commission p:last-of-type{margin-bottom:0}
   .cta{
@@ -130,6 +151,10 @@
   footer p:last-child{margin-bottom:0}
 
   /* ---- responsive ---- */
+  @media (max-width:62rem){
+    figure{max-width:var(--measure)}
+  }
+
   @media (max-width:34rem){
     .wrap{padding:2.5rem 1.25rem 3rem}
     body{font-size:1.0625rem}
@@ -162,7 +187,7 @@
     </section>
 
     <!-- 3. The dashboard -->
-    <section>
+    <section class="has-figure">
       <p>I created a <a href="https://adr-dea-project.onrender.com/" target="_blank" rel="noopener">live public dashboard</a> that makes over 1300 research projects accredited under the Digital Economy Act visible and searchable. The dashboard is enriched using a large language model (LLM) to classify projects by what topic they focus on and for what analytical purpose. Visualisations use information directly from the register, as well as these LLM-classifications, to show how research activity is changing over time. For example, the classifications reveal the rapid rise and subsequent fall in COVID-19-related research projects since 2020, while research examining demographic disparities has persisted.</p>
 
       <figure>
