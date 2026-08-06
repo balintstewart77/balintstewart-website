@@ -1,237 +1,335 @@
 <!DOCTYPE html>
 <html lang="en-GB">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Balint Stewart — data scientist, research data infrastructure</title>
+<meta name="description" content="I combine data science and rigorous evaluation to turn fragmented records of research activity into trustworthy evidence for funders, data services and the public." />
+<meta name="theme-color" content="#fbfbfa" />
 
-<title>Balint Stewart — Data scientist and research infrastructure builder</title>
-<meta name="description" content="I combine data science and rigorous evaluation to build tools that turn fragmented records of research activity into trustworthy evidence for data services and the public.">
-
-<link rel="canonical" href="https://balintstewart.co.uk/">
-
-<!-- Link preview (LinkedIn, Slack, email clients, X) -->
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="Balint Stewart">
-<meta property="og:url" content="https://balintstewart.co.uk/">
-<meta property="og:title" content="Balint Stewart — Data scientist and research infrastructure builder">
-<meta property="og:description" content="I build tools that turn fragmented records of research activity into trustworthy evidence for data services and the public.">
-<meta property="og:image" content="https://balintstewart.co.uk/dashboard.png">
-<meta property="og:image:width" content="1612">
-<meta property="og:image:height" content="894">
-<meta property="og:image:alt" content="The DEA Accredited Projects Dashboard, showing portfolio-level charts of register entries over time.">
-<meta name="twitter:card" content="summary_large_image">
+<!-- Open Graph. Set og:url and og:image to absolute URLs once the domain is live. -->
+<meta property="og:type" content="profile" />
+<meta property="og:title" content="Balint Stewart — data scientist, research data infrastructure" />
+<meta property="og:description" content="I combine data science and rigorous evaluation to turn fragmented records of research activity into trustworthy evidence for funders, data services and the public." />
+<!-- <meta property="og:url" content="https://example.com/" /> -->
+<!-- <meta property="og:image" content="https://example.com/dashboard.png" /> -->
 
 <style>
-  :root{
-    --ink:#1a1a1a;
-    --muted:#565656;
-    --rule:#e0ddd6;
-    --bg:#fbfaf8;
-    --accent:#c05a3e;      /* taken from the dashboard charts */
-    --accent-deep:#8f3f2a;
-    --measure:44rem;
-    --wide:60rem;
-  }
+:root {
+  --ink:        #111614;
+  --ink-soft:   #4a534f;
+  --meta:       #6a736f;
+  --label:      #5c6764;
+  --rule:       #d7dbd9;
+  --sheet:      #fbfbfa;
+  --page:       #f0f1ef;
+  --edge:       #e6e8e7;
+  --teal:       #007a70;
+  --teal-link:  #00655d;
+  --teal-dark:  #00514b;
+  --teal-deep:  #003f39;
+  --band:       #e9efed;
+  --band-edge:  #cfdbd8;
+  --on-teal:    #f2f7f6;
+  --on-teal-2:  #cfe3e0;
+  --on-teal-ul: #7fc9c1;
 
-  *,*::before,*::after{box-sizing:border-box}
+  --serif: 'Iowan Old Style', 'Palatino Linotype', Palatino, 'Book Antiqua', Georgia, serif;
+  --sans:  -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
 
-  html{-webkit-text-size-adjust:100%}
+  --gutter: 56px;   /* sheet side padding */
+  --rail:   132px;  /* left label column  */
+}
 
-  body{
-    margin:0;
-    background:var(--bg);
-    color:var(--ink);
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
-    font-size:1.0625rem;
-    line-height:1.65;
-    -webkit-font-smoothing:antialiased;
-  }
+*, *::before, *::after { box-sizing: border-box; }
 
-  .wrap{
-    width:100%;
-    max-width:var(--wide);
-    margin-left:auto;
-    margin-right:auto;
-    padding:3.5rem 1.5rem 4rem;
-  }
+html { -webkit-text-size-adjust: 100%; }
 
-  /* prose sits at a readable measure, centred inside the wider track */
-  header, main > section, footer{
-    max-width:var(--measure);
-    margin-left:auto;
-    margin-right:auto;
-  }
+body {
+  margin: 0;
+  background: var(--page);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 17.5px;
+  line-height: 1.64;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
-  /* ---- header ---- */
-  header{
-    padding-bottom:1.75rem;
-    border-bottom:1px solid var(--rule);
-    margin-bottom:2.25rem;
-  }
-  h1{
-    font-size:1.5rem;
-    line-height:1.25;
-    margin:0 0 .35rem;
-    letter-spacing:-.015em;
-  }
-  .role{
-    margin:0 0 1.25rem;
-    color:var(--muted);
-    font-size:1rem;
-  }
-  .lede{
-    margin:0;
-    font-size:1.1875rem;
-    line-height:1.55;
-  }
+/* ── the sheet ─────────────────────────────────────────────── */
+.sheet {
+  max-width: 1000px;
+  margin: 0 auto;
+  background: var(--sheet);
+  border-left: 1px solid var(--edge);
+  border-right: 1px solid var(--edge);
+  min-height: 100vh;
+  overflow-x: hidden; /* lets the screenshot break out without scrolling the page */
+}
 
-  /* ---- body ---- */
-  main > section{margin-bottom:2.25rem}
-  p{margin:0 0 1rem}
-  p:last-child{margin-bottom:0}
+.pad { padding-left: var(--gutter); padding-right: var(--gutter); }
 
-  a{color:var(--accent-deep);text-decoration:underline;text-underline-offset:2px;text-decoration-thickness:1px}
-  a:hover{color:var(--accent)}
+/* ── masthead ──────────────────────────────────────────────── */
+.masthead {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding-top: 34px;
+  padding-bottom: 26px;
+  border-bottom: 3px solid var(--teal);
+}
 
-  /* dashboard section spans the wide track so the figure can break out */
-  main > section.has-figure{max-width:var(--wide)}
-  main > section.has-figure > p{
-    max-width:var(--measure);
-    margin-left:auto;
-    margin-right:auto;
-  }
+.identity { flex: 1 1 380px; }
 
-  /* ---- figure ---- */
-  figure{
-    max-width:var(--wide);
-    margin:1.75rem auto 0;
-  }
-  figure img{
-    display:block;
-    width:100%;
-    height:auto;
-    border:1px solid var(--rule);
-    border-radius:3px;
-  }
-  figcaption{
-    margin-top:.6rem;
-    text-align:left;
-    font-size:.875rem;
-    line-height:1.5;
-    color:var(--muted);
-  }
+h1 {
+  margin: 0 0 8px;
+  font-family: var(--serif);
+  font-size: 38px;
+  line-height: 1.08;
+  font-weight: 400;
+  letter-spacing: -0.012em;
+}
 
-  /* ---- commission block ---- */
-  .commission{
-    background:#fff;
-    border:1px solid var(--rule);
-    border-left:3px solid var(--accent);
-    border-radius:3px;
-    padding:1.5rem 1.5rem 1.5rem;
-    max-width:var(--measure);
-    margin:0 auto 2.25rem;
-  }
-  .commission p:last-of-type{margin-bottom:0}
-  .cta{
-    margin-top:1.1rem;
-    padding-top:1.1rem;
-    border-top:1px solid var(--rule);
-    font-size:1rem;
-  }
+.role { margin: 0; font-size: 18px; color: var(--ink-soft); }
 
-  /* ---- footer ---- */
-  footer{
-    margin-top:3rem;
-    padding-top:1.75rem;
-    border-top:1px solid var(--rule);
-    color:var(--muted);
-    font-size:.9375rem;
-  }
-  footer p{margin:0 0 .5rem}
-  footer p:last-child{margin-bottom:0}
+.meta {
+  flex: 0 0 auto;
+  text-align: right;
+  font-size: 14.5px;
+  line-height: 1.7;
+  color: var(--meta);
+}
 
-  /* ---- responsive ---- */
-  @media (max-width:62rem){
-    figure{max-width:var(--measure)}
-  }
+/* ── the argument ──────────────────────────────────────────── */
+.statement {
+  padding-top: 34px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid var(--rule);
+}
 
-  @media (max-width:34rem){
-    .wrap{padding:2.5rem 1.25rem 3rem}
-    body{font-size:1.0625rem}
-    h1{font-size:1.375rem}
-    .lede{font-size:1.125rem}
-    .commission{padding:1.25rem}
-  }
+.statement p {
+  margin: 0;
+  max-width: 62ch;
+  font-family: var(--serif);
+  font-size: 24px;
+  line-height: 1.42;
+  letter-spacing: -0.006em;
+  text-wrap: pretty;
+}
 
-  @media print{
-    body{background:#fff}
-    .commission{border-left-color:#999}
+.row {
+  display: grid;
+  grid-template-columns: var(--rail) minmax(0, 1fr);
+  gap: 0 40px;
+  padding-top: 48px;
+}
+
+.row:first-of-type { padding-top: 44px; }
+
+.label {
+  grid-column: 1;
+  padding-top: 5px;
+  font-size: 12px;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--label);
+}
+
+.row > .prose,
+.row > .contact { grid-column: 2; }
+
+.prose {
+  margin: 0;
+  max-width: 66ch;   /* ~66 characters — inside the 65–75 target */
+  text-wrap: pretty;
+}
+
+/* ── evidence ──────────────────────────────────────────────── */
+/* Breaks the prose measure: full sheet width, so chart labels stay legible. */
+.evidence {
+  margin: 30px calc(var(--gutter) * -1) 0;
+  padding: 22px;
+  background: var(--band);
+  border-top: 1px solid var(--band-edge);
+  border-bottom: 1px solid var(--band-edge);
+}
+
+.evidence > a:first-child { display: block; border: 0; }
+
+.evidence img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--band-edge);
+  background: #fff;
+}
+
+.evidence .open {
+  display: inline-block;
+  margin-top: 14px;
+  font-size: 14.5px;
+}
+
+/* ── the offer ─────────────────────────────────────────────── */
+.commission {
+  margin-top: 56px;
+  padding: 36px 40px 38px;
+  background: var(--teal-dark);
+  color: var(--on-teal);
+}
+
+.commission p {
+  margin: 0 0 16px;
+  max-width: 66ch;
+  font-family: var(--serif);
+  font-size: 21px;
+  line-height: 1.48;
+  text-wrap: pretty;
+}
+
+.commission p + p { margin-bottom: 30px; color: var(--on-teal-2); }
+
+.cta {
+  display: inline-block;
+  padding: 12px 0 6px;
+  font-family: var(--sans);
+  font-size: 20px;
+  font-weight: 600;
+  color: #fff;
+  border-bottom: 2px solid var(--on-teal-ul);
+}
+
+.cta:hover, .cta:focus-visible { color: #fff; border-bottom-color: #fff; }
+
+/* Bio and contact carry no label — the block above is the break. */
+.coda { padding-top: 56px; padding-bottom: 56px; }
+.coda .prose + .contact { margin-top: 40px; }
+.contact { font-size: 18px; }
+
+/* ── links ─────────────────────────────────────────────────── */
+a { color: var(--teal-link); text-decoration: none; border-bottom: 1px solid rgba(0, 101, 93, 0.45); }
+a:hover { color: var(--teal-deep); border-bottom-color: var(--teal-deep); }
+a:focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; border-radius: 1px; }
+.commission a { color: #fff; border-bottom-color: var(--on-teal-ul); }
+.commission a:focus-visible { outline-color: #fff; }
+
+::selection { background: rgba(0, 122, 112, 0.18); }
+
+/* ── narrow ────────────────────────────────────────────────── */
+@media (max-width: 760px) {
+  :root { --gutter: 20px; }
+
+  body { font-size: 16.5px; line-height: 1.66; }
+
+  .sheet { border-left: 0; border-right: 0; }
+
+  .masthead { padding-top: 24px; padding-bottom: 20px; gap: 16px; }
+  h1 { font-size: 34px; line-height: 1.06; }
+  .role { font-size: 16px; }
+  .meta { flex: 1 1 100%; text-align: left; }
+
+  .statement { padding-top: 24px; padding-bottom: 24px; }
+  .statement p { font-size: 25px; line-height: 1.28; }
+
+  /* the rail cannot survive here: labels sit above their prose */
+  .row { grid-template-columns: minmax(0, 1fr); padding-top: 26px; }
+  .row:first-of-type { padding-top: 26px; }
+  .label { grid-column: 1; padding-top: 0; padding-bottom: 8px; font-size: 11.5px; }
+  .row > .prose, .row > .contact { grid-column: 1; }
+
+  .evidence { padding: 14px; }
+
+  .commission { margin-top: 30px; padding: 24px 20px 26px; }
+  .commission p { font-size: 20px; line-height: 1.42; }
+  .commission p + p { font-size: 18px; line-height: 1.5; margin-bottom: 22px; }
+
+  /* full-width tap target, comfortably over 44px */
+  .cta {
+    display: block;
+    padding: 15px 12px;
+    text-align: center;
+    font-size: 15.5px;
+    background: var(--sheet);
+    color: var(--teal-dark);
+    border-bottom: 3px solid var(--on-teal-ul);
   }
+  .cta:hover, .cta:focus-visible { color: var(--teal-dark); background: #fff; border-bottom-color: var(--on-teal-ul); }
+
+  .coda { padding-top: 30px; padding-bottom: 40px; }
+  .coda .prose + .contact { margin-top: 26px; }
+  .contact { font-size: 17px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
 </style>
 </head>
 
 <body>
-<div class="wrap">
+<main class="sheet">
 
-  <header>
-    <h1>Balint Stewart</h1>
-    <p class="role">Data scientist and research infrastructure builder</p>
-    <p class="lede">I combine data science and rigorous evaluation to build tools that turn fragmented records of research activity into trustworthy evidence for data services and the public.</p>
+  <header class="masthead pad">
+    <div class="identity">
+      <h1>Balint Stewart</h1>
+      <p class="role">Data scientist building tools for research data infrastructure</p>
+    </div>
+    <div class="meta">
+      <div>London, UK</div>
+      <div><a href="mailto:balint@balintstewart.co.uk">balint@balintstewart.co.uk</a></div>
+    </div>
   </header>
 
-  <main>
+  <div class="statement pad">
+    <p>I combine data science and rigorous evaluation to turn fragmented records of research activity into trustworthy evidence for funders, data services and the public.</p>
+  </div>
 
-    <!-- 2. The problem -->
-    <section>
-      <p>Public registers of sensitive data use are essential for transparency, but the information is usually hidden in static Excel files. This makes it difficult to see what research is being done using different kinds of data. Without a clear view of activity it&rsquo;s difficult for researchers to discover precedent, funders to invest strategically, and for anyone who wants to communicate to the public about how their data is being used for public benefit.</p>
+  <div class="pad">
+
+    <section class="row">
+      <h2 class="label">The problem</h2>
+      <p class="prose">Public registers of sensitive data use are essential for transparency, but the information is usually hidden in static Excel files. This makes it difficult to see what research is being done using different kinds of data. Without a clear view of activity it&rsquo;s difficult for researchers to discover precedent, funders to invest strategically, and for anyone who wants to communicate to the public about how their data is being used for public benefit.</p>
     </section>
 
-    <!-- 3. The dashboard -->
-    <section class="has-figure">
-      <p>I created a <a href="https://adr-dea-project.onrender.com/" target="_blank" rel="noopener">live public dashboard</a> that makes over 1300 research projects accredited under the Digital Economy Act visible and searchable. The dashboard is enriched using a large language model (LLM) to classify projects by what topic they focus on and for what analytical purpose. Visualisations use information directly from the register, as well as these LLM-classifications, to show how research activity is changing over time. For example, the classifications reveal the rapid rise and subsequent fall in COVID-19-related research projects since 2020, while research examining demographic disparities has persisted.</p>
-
-      <figure>
-        <a href="https://adr-dea-project.onrender.com/" target="_blank" rel="noopener">
-          <img src="dashboard.png" alt="Portfolio analysis view of the DEA Accredited Projects Dashboard, showing 1,308 retained register entries, a bar chart of new register entries by year from 2019 to 2025, a quarterly breakdown, and a pie chart of projects by trusted research environment provider.">
-        </a>
-        <figcaption>Portfolio-level view of the DEA register. <a href="https://adr-dea-project.onrender.com/" target="_blank" rel="noopener">Explore the dashboard</a>.</figcaption>
-      </figure>
+    <section class="row">
+      <h2 class="label">The dashboard</h2>
+      <p class="prose">I created a <a href="https://adr-dea-project.onrender.com/">live public dashboard</a> that makes over 1300 research projects accredited under the Digital Economy Act visible and searchable. The dashboard is enriched using a large language model (LLM) to classify projects by what topic they focus on and for what analytical purpose. Visualisations use information directly from the register, as well as these LLM-classifications, to show how research activity is changing over time. For example, the classifications reveal the rapid rise and subsequent fall in COVID-19-related research projects since 2020, while research examining demographic disparities has persisted.</p>
     </section>
 
-    <!-- 4. Thesis -->
-    <section>
-      <p>The biggest challenge for applied AI in trust-critical domains like sensitive data research is in evaluation. While it&rsquo;s relatively straightforward to use powerful models like LLMs to classify projects, it is much harder to distinguish between trustworthy model outputs and outputs that are confidently wrong.</p>
+    <figure class="evidence">
+      <a href="https://adr-dea-project.onrender.com/"><img src="dashboard.png" alt="The DEA Accredited Projects dashboard, Portfolio Analysis view: new register entries by year, new entries by quarter from 2019 to 2026, and a breakdown of projects by Trusted Research Environment provider." width="1612" height="934" /></a>
+      <a class="open" href="https://adr-dea-project.onrender.com/">Open the live dashboard &#8599;</a>
+    </figure>
+
+    <section class="row">
+      <h2 class="label">The challenge</h2>
+      <p class="prose">The biggest challenge for applied AI in trust-critical domains like sensitive data research is in evaluation. While it&rsquo;s relatively straightforward to use powerful models like LLMs to classify projects, it is much harder to distinguish between trustworthy model outputs and outputs that are confidently wrong.</p>
     </section>
 
-    <!-- 5. Validation -->
-    <section>
-      <p>A validation study for the DEA project classification is currently underway, using trained human coders to measure agreement between the model and human judgement. The study is carefully designed to separate disagreement that arises because of model error, lack of evidence in the register, or gaps in the taxonomy. The full preregistered protocol can be found <a href="https://osf.io/3hsnj/overview" target="_blank" rel="noopener">here</a>.</p>
+    <section class="row">
+      <h2 class="label">Underway</h2>
+      <p class="prose">A validation study for the DEA project classification is currently underway, using trained human coders to measure agreement between the model and human judgement. The study is carefully designed to separate disagreement that arises because of model error, lack of evidence in the register, or gaps in the taxonomy. The full preregistered protocol can be found <a href="https://osf.io/3hsnj/overview">here</a>.</p>
     </section>
 
-    <!-- 6. The extension -->
-    <section>
-      <p>This approach could also be extended to link research activity to government policy priorities and research outputs. A joined-up view could help identify where research investments are addressing stated needs, where relevant evidence already exists, and where gaps remain.</p>
+    <section class="row">
+      <h2 class="label">The extension</h2>
+      <p class="prose">This approach could also be extended to link research activity to government policy priorities and research outputs. A joined-up view could help identify where research investments are addressing stated needs, where relevant evidence already exists, and where gaps remain.</p>
     </section>
 
-    <!-- 7. What can be commissioned -->
     <section class="commission">
       <p>If you run a research data infrastructure or are otherwise responsible for public transparency about the use of your data, I take on a small number of engagements to build live interactive dashboards tailored to your register and use cases.</p>
       <p>In a typical 6-week engagement, you will receive a cleaned and structured register, a live searchable dashboard enriched with LLM-classifications against a documented taxonomy, and a validation plan.</p>
-      <p class="cta">Discuss a project: <a href="mailto:balint@balintstewart.co.uk?subject=Enquiry%20via%20balintstewart.co.uk">balint@balintstewart.co.uk</a></p>
+      <a class="cta" href="mailto:balint@balintstewart.co.uk">Discuss a project: balint@balintstewart.co.uk</a>
     </section>
 
-    <!-- 8. Bio -->
-    <section>
-      <p>I have nearly a decade of experience working in the sensitive data research infrastructure landscape, first at Administrative Data Research UK (ADR UK) and then at DARE UK. More recently I worked on building AI-powered tools for digital pathology, another high-stakes domain where <a href="https://flylord365298.substack.com/p/whole-slide-image-pathology-lessons" target="_blank" rel="noopener">evaluation matters more than raw model capability</a>. I am currently working with UCL on HDR UK-funded research to develop and validate the DEA dashboard.</p>
+    <section class="coda">
+      <p class="prose">I have nearly a decade of experience working in the sensitive data research infrastructure landscape, first at Administrative Data Research UK (ADR UK) and then at DARE UK. More recently I worked on building AI-powered tools for digital pathology, another high-stakes domain where evaluation <a href="https://flylord365298.substack.com/p/whole-slide-image-pathology-lessons">matters more than raw model capability</a>. I am currently working with UCL on HDR UK-funded research to develop and validate the DEA dashboard.</p>
+      <p class="contact"><a href="mailto:balint@balintstewart.co.uk">Discuss a project: balint@balintstewart.co.uk</a></p>
     </section>
 
-  </main>
-
-  <footer>
-    <p>Discuss a project: <a href="mailto:balint@balintstewart.co.uk?subject=Enquiry%20via%20balintstewart.co.uk">balint@balintstewart.co.uk</a></p>
-    <p>Balint Stewart, PhD &middot; London</p>
-  </footer>
-
-</div>
+  </div>
+</main>
 </body>
 </html>
