@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Case study: DEA accredited projects dashboard — Balint Stewart</title>
+<meta name="description" content="A live public dashboard of over 1,300 research projects accredited under the Digital Economy Act, classified by topic and purpose, with a pre-registered validation study." />
+<meta name="theme-color" content="#fbfbfa" />
+
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Case study: DEA accredited projects dashboard" />
+<meta property="og:description" content="A live public dashboard of over 1,300 research projects accredited under the Digital Economy Act, classified by topic and purpose, with a pre-registered validation study." />
+
+<link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+<main>
+
+  <header class="masthead">
+    <div class="wrap">
+      <div class="identity">
+        <h1><a href="./">Balint Stewart</a></h1>
+        <p class="role">Data scientist building tools for research data infrastructure</p>
+      </div>
+      <div class="meta">
+        <div>London, UK</div>
+        <div><a href="mailto:balint@balintstewart.co.uk">balint@balintstewart.co.uk</a></div>
+      </div>
+    </div>
+  </header>
+
+  <div class="statement">
+    <div class="wrap">
+      <p>Case study: the Digital Economy Act accredited projects dashboard.</p>
+      <p class="sub">A live public dashboard of over 1,300 research projects, classified by topic and purpose, with a pre-registered validation study.</p>
+    </div>
+  </div>
+
+  <section class="row wrap">
+    <h2 class="label">The problem</h2>
+    <p class="prose">Public registers of sensitive data use are essential for transparency, but the information is usually hidden in static Excel files. This makes it difficult to see what research is being done using different kinds of data. Without a clear view of activity it&rsquo;s difficult for researchers to discover precedent, funders to invest strategically, and for anyone who wants to communicate to the public about how their data is being used for public benefit.</p>
+  </section>
+
+  <section class="row wrap">
+    <h2 class="label">The dashboard</h2>
+    <p class="prose">I created a <a href="https://adr-dea-project.onrender.com/">live public dashboard</a> that makes over 1300 research projects accredited under the Digital Economy Act visible and searchable. The dashboard is enriched using a large language model (LLM) to classify projects by what topic they focus on and for what analytical purpose. Visualisations use information directly from the register, as well as these LLM-classifications, to show how research activity is changing over time. For example, the classifications reveal the rapid rise and subsequent fall in COVID-19-related research projects since 2020, while research examining demographic disparities has persisted.</p>
+  </section>
+
+  <figure class="evidence">
+    <div>
+      <a class="shot" href="https://adr-dea-project.onrender.com/"><img src="dashboard.png" alt="The DEA Accredited Projects dashboard, Portfolio Analysis view: new register entries by year, new entries by quarter from 2019 to 2026, and a breakdown of projects by Trusted Research Environment provider." width="1612" height="934" /></a>
+      <a class="open" href="https://adr-dea-project.onrender.com/">Open the live dashboard &#8599;</a>
+    </div>
+  </figure>
+
+  <section class="row wrap">
+    <h2 class="label">The challenge</h2>
+    <p class="prose">The biggest challenge for applied AI in trust-critical domains like sensitive data research is in evaluation. While it&rsquo;s relatively straightforward to use powerful models like LLMs to classify projects, it is much harder to distinguish between trustworthy model outputs and outputs that are confidently wrong.</p>
+  </section>
+
+  <section class="row wrap">
+    <h2 class="label">Underway</h2>
+    <p class="prose">A validation study for the DEA project classification is currently underway, using trained human coders to measure agreement between the model and human judgement. The study is carefully designed to separate disagreement that arises because of model error, lack of evidence in the register, or gaps in the taxonomy. The full preregistered protocol can be found <a href="https://osf.io/3hsnj/overview">here</a>.</p>
+  </section>
+
+  <section class="row wrap">
+    <h2 class="label">The extension</h2>
+    <p class="prose">This approach could also be extended to link research activity to government policy priorities and research outputs. A joined-up view could help identify where research investments are addressing stated needs, where relevant evidence already exists, and where gaps remain.</p>
+  </section>
+
+  <section class="commission">
+    <div class="wrap">
+      <p>Book a 20-minute call, or send me your register and I&rsquo;ll show you what it could look like.</p>
+      <a class="cta" href="mailto:balint@balintstewart.co.uk?subject=20-minute%20call">Book a 20-minute call</a>
+      <a class="cta" href="mailto:balint@balintstewart.co.uk?subject=Our%20data%20use%20register">Send me your register</a>
+    </div>
+  </section>
+
+</main>
+</body>
+</html>

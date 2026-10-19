@@ -1,0 +1,276 @@
+:root {
+  --ink:        #111614;
+  --ink-soft:   #4a534f;
+  --meta:       #6a736f;
+  --label:      #5c6764;
+  --rule:       #d7dbd9;
+  --page:       #fbfbfa;
+  --teal:       #007a70;
+  --teal-link:  #00655d;
+  --teal-dark:  #00514b;
+  --teal-deep:  #003f39;
+  --band:       #e9efed;
+  --band-edge:  #cfdbd8;
+  --on-teal:    #f2f7f6;
+  --on-teal-2:  #cfe3e0;
+  --on-teal-ul: #7fc9c1;
+
+  --serif: 'Iowan Old Style', 'Palatino Linotype', Palatino, 'Book Antiqua', Georgia, serif;
+  --sans:  -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+
+  --measure: 1120px;  /* text column cap  */
+  --gutter:  40px;    /* text side padding */
+  --rail:    132px;   /* left label column */
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--page);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 17.5px;
+  line-height: 1.64;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Full-bleed bands are the page structure; .wrap holds the reading column.
+   Nothing is capped except the text itself, so the window is always filled. */
+.wrap {
+  max-width: var(--measure);
+  margin: 0 auto;
+  padding-left: var(--gutter);
+  padding-right: var(--gutter);
+}
+
+/* ── masthead ──────────────────────────────────────────────── */
+.masthead { border-bottom: 3px solid var(--teal); }
+
+.masthead .wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding-top: 34px;
+  padding-bottom: 26px;
+}
+
+.identity { flex: 1 1 380px; }
+
+h1 {
+  margin: 0 0 8px;
+  font-family: var(--serif);
+  font-size: 38px;
+  line-height: 1.08;
+  font-weight: 400;
+  letter-spacing: -0.012em;
+}
+
+h1 a { color: inherit; border: 0; }
+
+.role { margin: 0; font-size: 18px; color: var(--ink-soft); }
+
+.meta {
+  flex: 0 0 auto;
+  text-align: right;
+  font-size: 14.5px;
+  line-height: 1.7;
+  color: var(--meta);
+}
+
+/* ── the argument ──────────────────────────────────────────── */
+.statement { border-bottom: 1px solid var(--rule); }
+
+.statement .wrap { padding-top: 34px; padding-bottom: 32px; }
+
+.statement p {
+  margin: 0;
+  max-width: 62ch;
+  font-family: var(--serif);
+  font-size: 24px;
+  line-height: 1.42;
+  letter-spacing: -0.006em;
+  text-wrap: pretty;
+}
+
+.statement p.sub {
+  margin-top: 14px;
+  font-family: var(--sans);
+  font-size: 18.5px;
+  line-height: 1.55;
+  letter-spacing: 0;
+  color: var(--ink-soft);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: var(--rail) minmax(0, 1fr);
+  gap: 0 40px;
+  padding-top: 48px;
+}
+
+.row:first-of-type { padding-top: 44px; }
+
+.label {
+  grid-column: 1;
+  padding-top: 5px;
+  font-size: 12px;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--label);
+}
+
+.row > .prose,
+.row > .body { grid-column: 2; }
+
+.prose {
+  margin: 0;
+  max-width: 66ch;   /* ~66 characters — inside the 65–75 target */
+  text-wrap: pretty;
+}
+
+.audience { padding: 0; list-style: none; }
+.audience li { padding-left: 18px; border-left: 2px solid var(--band-edge); }
+.audience li + li { margin-top: 14px; }
+.audience strong { font-weight: 600; }
+
+.steps { padding: 0; list-style: none; counter-reset: step; }
+.steps li { position: relative; padding-left: 34px; counter-increment: step; }
+.steps li + li { margin-top: 14px; }
+.steps li::before {
+  content: counter(step);
+  position: absolute;
+  left: 0;
+  top: -1px;
+  font-family: var(--serif);
+  font-size: 20px;
+  color: var(--teal);
+}
+.steps strong { font-weight: 600; }
+.body > .prose + .prose { margin-top: 14px; }
+
+/* ── evidence ──────────────────────────────────────────────── */
+/* Full-bleed band. The image runs far wider than the prose, so chart
+   labels stay legible on a large monitor. */
+.evidence {
+  margin: 30px 0 0;
+  padding: 26px var(--gutter) 28px;
+  background: var(--band);
+  border-top: 1px solid var(--band-edge);
+  border-bottom: 1px solid var(--band-edge);
+}
+
+.evidence > div { max-width: 1500px; margin: 0 auto; }
+
+.evidence a.shot { display: block; border: 0; }
+
+.evidence img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--band-edge);
+  background: #fff;
+}
+
+.evidence .open + .open { margin-left: 28px; }
+
+.evidence .open {
+  display: inline-block;
+  margin-top: 14px;
+  font-size: 14.5px;
+}
+
+/* ── the offer ─────────────────────────────────────────────── */
+.commission {
+  margin-top: 56px;
+  background: var(--teal-dark);
+  color: var(--on-teal);
+}
+
+.commission .wrap { padding-top: 40px; padding-bottom: 44px; }
+
+.commission p {
+  margin: 0 0 16px;
+  max-width: 66ch;
+  font-family: var(--serif);
+  font-size: 21px;
+  line-height: 1.48;
+  text-wrap: pretty;
+}
+
+.commission p { margin-bottom: 26px; }
+
+.cta {
+  display: inline-block;
+  padding: 12px 0 6px;
+  font-family: var(--sans);
+  font-size: 20px;
+  font-weight: 600;
+  color: #fff;
+  border-bottom: 2px solid var(--on-teal-ul);
+}
+
+.cta:hover, .cta:focus-visible { color: #fff; border-bottom-color: #fff; }
+.cta + .cta { margin-left: 36px; }
+
+/* ── links ─────────────────────────────────────────────────── */
+a { color: var(--teal-link); text-decoration: none; border-bottom: 1px solid rgba(0, 101, 93, 0.45); }
+a:hover { color: var(--teal-deep); border-bottom-color: var(--teal-deep); }
+a:focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; border-radius: 1px; }
+.commission a { color: #fff; border-bottom-color: var(--on-teal-ul); }
+.commission a:focus-visible { outline-color: #fff; }
+
+::selection { background: rgba(0, 122, 112, 0.18); }
+
+/* ── narrow ────────────────────────────────────────────────── */
+@media (max-width: 760px) {
+  :root { --gutter: 20px; }
+
+  body { font-size: 16.5px; line-height: 1.66; }
+
+  .masthead .wrap { padding-top: 24px; padding-bottom: 20px; gap: 16px; }
+  h1 { font-size: 34px; line-height: 1.06; }
+  .role { font-size: 16px; }
+  .meta { flex: 1 1 100%; text-align: left; }
+
+  .statement .wrap { padding-top: 24px; padding-bottom: 24px; }
+  .statement p { font-size: 25px; line-height: 1.28; }
+  .statement p.sub { font-size: 16.5px; line-height: 1.55; }
+
+  /* the rail cannot survive here: labels sit above their prose */
+  .row { grid-template-columns: minmax(0, 1fr); padding-top: 26px; }
+  .row:first-of-type { padding-top: 26px; }
+  .label { grid-column: 1; padding-top: 0; padding-bottom: 8px; font-size: 11.5px; }
+  .row > .prose, .row > .body { grid-column: 1; }
+
+  .evidence { padding: 14px var(--gutter) 16px; }
+  .evidence .open + .open { margin-left: 22px; }
+
+  .commission { margin-top: 36px; }
+  .commission .wrap { padding-top: 24px; padding-bottom: 26px; }
+  .commission p { font-size: 20px; line-height: 1.42; }
+  .commission p { margin-bottom: 20px; }
+
+  /* full-width tap target, comfortably over 44px */
+  .commission .cta {
+    display: block;
+    padding: 15px 12px;
+    text-align: center;
+    font-size: 15.5px;
+    background: var(--page);
+    color: var(--teal-dark);
+    border-bottom: 3px solid var(--on-teal-ul);
+  }
+  .cta + .cta { margin: 12px 0 0; }
+  .commission .cta:hover, .commission .cta:focus-visible { color: var(--teal-dark); background: #fff; border-bottom-color: var(--on-teal-ul); }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
