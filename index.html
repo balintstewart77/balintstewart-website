@@ -4,13 +4,13 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Balint Stewart — data scientist, research data infrastructure</title>
-<meta name="description" content="I combine data science and rigorous evaluation to turn fragmented records of research activity into trustworthy evidence for funders, data services and the public." />
+<meta name="description" content="I turn public registers of data use into searchable, validated evidence of what your data is used for and the public benefit it delivers." />
 <meta name="theme-color" content="#fbfbfa" />
 
 <!-- Open Graph. Set og:url and og:image to absolute URLs once the domain is live. -->
 <meta property="og:type" content="profile" />
 <meta property="og:title" content="Balint Stewart — data scientist, research data infrastructure" />
-<meta property="og:description" content="I combine data science and rigorous evaluation to turn fragmented records of research activity into trustworthy evidence for funders, data services and the public." />
+<meta property="og:description" content="I turn public registers of data use into searchable, validated evidence of what your data is used for and the public benefit it delivers." />
 <!-- <meta property="og:url" content="https://example.com/" /> -->
 <!-- <meta property="og:image" content="https://example.com/dashboard.png" /> -->
 
@@ -113,6 +113,15 @@ h1 {
   text-wrap: pretty;
 }
 
+.statement p.sub {
+  margin-top: 14px;
+  font-family: var(--sans);
+  font-size: 18.5px;
+  line-height: 1.55;
+  letter-spacing: 0;
+  color: var(--ink-soft);
+}
+
 .row {
   display: grid;
   grid-template-columns: var(--rail) minmax(0, 1fr);
@@ -139,6 +148,11 @@ h1 {
   max-width: 66ch;   /* ~66 characters — inside the 65–75 target */
   text-wrap: pretty;
 }
+
+.audience { padding: 0; list-style: none; }
+.audience li { padding-left: 18px; border-left: 2px solid var(--band-edge); }
+.audience li + li { margin-top: 14px; }
+.audience strong { font-weight: 600; }
 
 /* ── evidence ──────────────────────────────────────────────── */
 /* Full-bleed band. The image runs far wider than the prose, so chart
@@ -201,6 +215,14 @@ h1 {
 
 .cta:hover, .cta:focus-visible { color: #fff; border-bottom-color: #fff; }
 
+.commission p.alt {
+  margin: 20px 0 0;
+  font-family: var(--sans);
+  font-size: 16.5px;
+  line-height: 1.55;
+  color: var(--on-teal-2);
+}
+
 /* Bio and contact carry no label — the block above is the break. */
 .coda { padding-top: 56px; padding-bottom: 56px; }
 .coda .prose + .contact { margin-top: 40px; }
@@ -228,6 +250,7 @@ a:focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; border-ra
 
   .statement .wrap { padding-top: 24px; padding-bottom: 24px; }
   .statement p { font-size: 25px; line-height: 1.28; }
+  .statement p.sub { font-size: 16.5px; line-height: 1.55; }
 
   /* the rail cannot survive here: labels sit above their prose */
   .row { grid-template-columns: minmax(0, 1fr); padding-top: 26px; }
@@ -283,13 +306,23 @@ a:focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; border-ra
 
   <div class="statement">
     <div class="wrap">
-      <p>Combining data science and rigorous evaluation to turn fragmented records of research activity into trustworthy evidence for funders, data services and the public.</p>
+      <p>See what your data is used for, and show what it&rsquo;s worth.</p>
+      <p class="sub">I turn public registers of data use into searchable, validated evidence of public benefit: for funding renewals, for public accountability, and for deciding where to invest.</p>
     </div>
   </div>
 
   <section class="row wrap">
     <h2 class="label">The problem</h2>
     <p class="prose">Public registers of sensitive data use are essential for transparency, but the information is usually hidden in static Excel files. This makes it difficult to see what research is being done using different kinds of data. Without a clear view of activity it&rsquo;s difficult for researchers to discover precedent, funders to invest strategically, and for anyone who wants to communicate to the public about how their data is being used for public benefit.</p>
+  </section>
+
+  <section class="row wrap">
+    <h2 class="label">Who it&rsquo;s for</h2>
+    <ul class="prose audience">
+      <li><strong>Secure data environments and TREs</strong> that need to show who is using their data, for what, and to what public benefit.</li>
+      <li><strong>Funders</strong> judging which data infrastructure investments are actually being used, and where to invest next.</li>
+      <li><strong>Data custodians</strong> publishing data use registers, increasingly to HDR UK&rsquo;s data use register standard, who want them read and used rather than just published.</li>
+    </ul>
   </section>
 
   <section class="row wrap">
@@ -321,15 +354,16 @@ a:focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; border-ra
 
   <section class="commission">
     <div class="wrap">
-      <p>If you run a research data infrastructure or are otherwise responsible for public transparency about the use of your data, I will build you live interactive dashboards tailored to your register and use cases.</p>
+      <p>If you run a secure data environment, fund data infrastructure, or publish a data use register, I will turn your register into a live, searchable view of what your data is used for, with evidence you can put in front of funders and the public.</p>
       <p>In a typical 6-week engagement, you will receive a cleaned and structured register, a live searchable dashboard enriched with LLM-classifications against a documented taxonomy, and a validation plan.</p>
-      <a class="cta" href="mailto:balint@balintstewart.co.uk">Discuss a project: balint@balintstewart.co.uk</a>
+      <a class="cta" href="mailto:balint@balintstewart.co.uk?subject=20-minute%20call">Book a 20-minute call</a>
+      <p class="alt">Or <a href="mailto:balint@balintstewart.co.uk?subject=Our%20data%20use%20register">send me your register</a>, or a link to it, and I&rsquo;ll show you what it could look like.</p>
     </div>
   </section>
 
   <section class="coda wrap">
-    <p class="prose">I have nearly a decade of experience working in the sensitive data research infrastructure landscape, first at Administrative Data Research UK (ADR UK) and then at DARE UK. More recently I worked on building AI-powered tools for digital pathology, another high-stakes domain where evaluation <a href="https://flylord365298.substack.com/p/whole-slide-image-pathology-lessons">is as important as raw model capability</a>. I am currently working with UCL on HDR UK-funded research to develop and validate the DEA dashboard.</p>
-    <p class="contact"><a href="mailto:balint@balintstewart.co.uk">Discuss a project: balint@balintstewart.co.uk</a></p>
+    <p class="prose">I have worked in sensitive data research infrastructure since 2020, first on Local Data Spaces, then at Administrative Data Research UK (ADR UK) and DARE UK. More recently I worked on building AI-powered tools for digital pathology, another high-stakes domain where evaluation <a href="https://flylord365298.substack.com/p/whole-slide-image-pathology-lessons">is as important as raw model capability</a>. I am currently working with UCL on HDR UK-funded research to develop and validate the DEA dashboard.</p>
+    <p class="contact"><a href="mailto:balint@balintstewart.co.uk?subject=20-minute%20call">Book a 20-minute call: balint@balintstewart.co.uk</a></p>
   </section> 
 
 </main>
