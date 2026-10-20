@@ -23,6 +23,9 @@ header.top .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;align
 .hero h1{font-family:Georgia,"Times New Roman",serif;font-size:clamp(30px,5vw,44px);line-height:1.15;margin:0 0 18px;max-width:20ch}
 .hero p{font-size:19px;color:var(--muted);max-width:42em;margin:0 0 28px}
 .hero p:last-child{margin-bottom:0}
+.hero p.back{font-size:15px;margin:0 0 20px}
+.back a{text-decoration:none;font-weight:600}
+.back a:hover{text-decoration:underline}
 
 /* buttons */
 .btns{display:flex;flex-wrap:wrap;gap:12px}
